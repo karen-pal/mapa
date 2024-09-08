@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploración Artística</title>
-    <!-- Importar la fuente Open Sans desde Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
     <style>
         body, html {
@@ -39,11 +38,11 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
             cursor: pointer;
             opacity: 0.7;
-            z-index: 10; /* Ensure boxes appear on top of the image */
-            color: #000; /* Text color */
-            font-size: 16px; /* Adjust font size as needed */
-            font-weight: 400; /* Regular font weight */
-            background-color: rgba(255, 255, 255, 0.8); /* Default background color */
+            z-index: 10;
+            color: #000;
+            font-size: 16px;
+            font-weight: 400;
+            background-color: rgba(255, 255, 255, 0.8);
         }
         .floating-box:hover {
             opacity: 1;
@@ -55,29 +54,30 @@
             position: absolute;
             display: none;
             z-index: 100;
-            max-width: 50vw; /* Adjusted for a large view */
-            max-height: 50vh; /* Take up to half the screen */
+            max-width: 50vw;
+            max-height: 50vh;
             object-fit: contain;
             transition: transform 0.3s ease;
         }
         .floating-box:hover img {
             display: block;
-            transform: scale(2.5); /* Scale up to make it larger, adjust as necessary */
+            transform: scale(2.5);
             box-shadow: 2px 2px 20px 2px rgba(0, 0, 0, 0.6);
         }
         .line {
-            stroke: #ff0000; /* Color of the line */
+            stroke: #ff0000;
             stroke-width: 2;
             fill: none;
+        }
+        .intersection {
+            fill: rgba(255, 0, 0, 0.5); /* Color de relleno con transparencia */
         }
     </style>
 </head>
 <body onclick="logCoordinates(event)">
 
 <div class="container">
-    <!-- Base image of the diagram -->
     <img src="mapa.png" id="base-diagram" alt="Diagrama de ML">
-
     <!-- SVG container for the connecting lines -->
     <svg class="lines-container" width="100%" height="100%" style="position: absolute; top: 0; left: 0; pointer-events: none;"></svg>
 
@@ -122,55 +122,51 @@
         <img src="thumbnails/arbol.png" alt="Árbol Image">
     </div>
 
-    <div class="floating-box" style="top: 28%; left: 53%; background-color: #f0e68c;" data-box="9" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box connect" style="top: 28%; left: 53%; background-color: #f0e68c;" data-box="9" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
-        <img src="thumbnails/arbol.png" alt="plancondorlora Image">
+        <img src="thumbnails/plancondorlora.png" alt="plancondorlora Image">
     </div>
 
-    <div class="floating-box" style="top: 37%; left: 90%; background-color: #e0ffff;" data-box="10" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box connect" style="top: 37%; left: 90%; background-color: #e0ffff;" data-box="10" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
-        <img src="thumbnails/arbol.png" alt="plancondorlora Image">
+        <img src="thumbnails/plancondorlora.png" alt="plancondorlora Image">
     </div>
 
-    <div class="floating-box" style="top: 28%; left: 14%; background-color: #f5deb3;" data-box="11" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box connect" style="top: 28%; left: 14%; background-color: #f5deb3;" data-box="11" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
-        <img src="thumbnails/arbol.png" alt="plancondorlora Image">
+        <img src="thumbnails/plancondorlora.png" alt="plancondorlora Image">
     </div>
 </div>
 
 <script>
-    // Function to open a link on click
     function openLink(url) {
         window.location.href = url;
     }
 
-    // Function to log coordinates on click
     function logCoordinates(event) {
-        // Get the click position relative to the container
         const container = document.querySelector('.container');
         const rect = container.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
 
-        // Convert to percentage
         const percentageX = (x / container.offsetWidth) * 100;
         const percentageY = (y / container.offsetHeight) * 100;
 
         console.log(`style="top: ${percentageY}%; left: ${percentageX}%"`);
     }
 
-    // Function to draw lines between floating boxes
     function drawConnectingLines() {
         const svg = document.querySelector('.lines-container');
-        const boxes = document.querySelectorAll('.floating-box');
+        const boxes = document.querySelectorAll('.connect');
 
-        // Clear existing lines
         svg.innerHTML = '';
 
-        // Loop through each box to draw lines
+        const points = [];
+
         boxes.forEach((box1) => {
             boxes.forEach((box2) => {
                 if (box1 === box2) return;
+
                 const rect1 = box1.getBoundingClientRect();
                 const rect2 = box2.getBoundingClientRect();
                 const containerRect = document.querySelector('.container').getBoundingClientRect();
@@ -179,6 +175,9 @@
                 const y1 = rect1.top + rect1.height / 2 - containerRect.top;
                 const x2 = rect2.left + rect2.width / 2 - containerRect.left;
                 const y2 = rect2.top + rect2.height / 2 - containerRect.top;
+
+                points.push({x: x1, y: y1});
+                points.push({x: x2, y: y2});
 
                 const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
                 line.setAttribute('x1', x1);
@@ -189,12 +188,20 @@
                 svg.appendChild(line);
             });
         });
+
+        if (points.length > 2) {
+            const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            const pointsStr = points.map(p => `${p.x},${p.y}`).join(' ');
+            polygon.setAttribute('points', pointsStr);
+            polygon.classList.add('intersection');
+            svg.appendChild(polygon);
+        }
     }
 
-    // Draw lines when the page loads
     window.onload = drawConnectingLines;
 </script>
 
 </body>
 </html>
+
 
