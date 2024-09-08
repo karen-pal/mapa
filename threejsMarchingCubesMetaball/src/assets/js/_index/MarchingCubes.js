@@ -45,7 +45,6 @@ export default class MarchingCubes {
 
     this.initDatGUI();
   }
-
   // マーチングキューブ空間のアップデート
   updateMargingCubesSpace() {
     const marchingSpace = new THREE.Vector3(this.margingSpaceSize, this.margingSpaceSize, this.margingSpaceSize);
@@ -74,7 +73,7 @@ export default class MarchingCubes {
   }
 
   // メタボールの数を更新
-  updateNumSpheres() {
+  updateNumSpheres_ORIG() {
     const randomValues = [];
     for (let i = 0; i < this.numSpheres-1; i++) {
       randomValues.push(new THREE.Vector4(
@@ -90,6 +89,27 @@ export default class MarchingCubes {
     this.material.uniforms.randomValues.value = randomValues;
     this.material.needsUpdate = false;
   }
+	// Actualización del método updateNumSpheres para definir posiciones manualmente
+	updateNumSpheres() {
+	  const spherePositions = [
+	    //new THREE.Vector4(0.1, 0.1, 0.1, 0), // Primera esfera en (0.1, 0.1, 0.1)
+	    //new THREE.Vector4(0.5, 0.5, 0.5, 0), // Segunda esfera en (0.5, 0.5, 0.5)
+	    new THREE.Vector4(.0, 0.7, 0.7, .5),  // Tercera esfera en (0.9, 0.9, 0.9)
+	    new THREE.Vector4(.0, -0.1, 0.1, .1),  // Tercera esfera en (0.9, 0.9, 0.9)
+	    new THREE.Vector4(.0, 0.0, 0.0, 0)  // Tercera esfera en (0.9, 0.9, 0.9)
+	  ];
+
+	  // Ajustar el número de esferas
+	  this.numSpheres = spherePositions.length;
+
+	  // Actualizar las esferas en los uniformes del shader
+	  this.material.defines.NUM_SPHERES = this.numSpheres;
+	  this.material.uniforms.randomValues.value = spherePositions;
+	  
+	  // Marcar que el material necesita actualización
+	  this.material.needsUpdate = true;
+	}
+
 
   initDatGUI() {
     const dat = require('dat.gui');
@@ -127,6 +147,7 @@ export default class MarchingCubes {
   }
 
   update(time) {
-    this.material.uniforms.time.value = time*.01 + Math.abs(Math.sin(time));
+    //this.material.uniforms.time.value = (time*.001 + Math.abs(Math.sin(time))) % 10;
+    this.material.uniforms.time.value = time % 100;
   }
 }

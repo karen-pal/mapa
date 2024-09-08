@@ -40,9 +40,11 @@ export default class Main {
       this.scene = new THREE.Scene();
 
       // camera
-      this.camera = new THREE.PerspectiveCamera(45, 1, 1, 1000);
-      this.camera.position.z = 100;
-      this.camera.lookAt(0, 0, 0);
+      //this.camera = new THREE.PerspectiveCamera(45, 1, 1, 1000);
+      this.camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 1000 );
+
+      this.camera.position.z = 140;
+      //this.camera.lookAt(0, 0, 0);
 
       // controls
       this.controls = new THREE.TrackballControls(this.camera, this.canvas);
@@ -51,6 +53,8 @@ export default class Main {
       // marchingCubes
       this.marchingCubes = new MarchingCubes();
       this.scene.add(this.marchingCubes.mesh);
+      const axesHelper = new THREE.AxesHelper(50)
+      this.scene.add(axesHelper); // Asegúrate de que `scene` esté definido en tu código
 
       this.onResize();
 
