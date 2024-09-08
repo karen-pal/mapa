@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exploración Artística</title>
+    <!-- Importar la fuente Open Sans desde Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap">
     <style>
         body, html {
             margin: 0;
@@ -15,6 +17,7 @@
             align-items: center;
             background-color: #f4f4f4;
             overflow: hidden;
+            font-family: 'Open Sans', sans-serif;
         }
         .container {
             position: relative;
@@ -31,13 +34,16 @@
         }
         .floating-box {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.5);
             padding: 10px;
             border-radius: 8px;
             transition: opacity 0.3s ease, transform 0.3s ease;
             cursor: pointer;
-            opacity: 0.5;
+            opacity: 0.7;
             z-index: 10; /* Ensure boxes appear on top of the image */
+            color: #000; /* Text color */
+            font-size: 16px; /* Adjust font size as needed */
+            font-weight: 400; /* Regular font weight */
+            background-color: rgba(255, 255, 255, 0.8); /* Default background color */
         }
         .floating-box:hover {
             opacity: 1;
@@ -76,57 +82,57 @@
     <svg class="lines-container" width="100%" height="100%" style="position: absolute; top: 0; left: 0; pointer-events: none;"></svg>
 
     <!-- Floating labels with adjusted positions from the original image -->
-    <div class="floating-box" style="top: 40%; left: 20%;" data-box="1" onclick="openLink('https://www.youtube.com/watch?v=1xyeEIL5i_0')">
+    <div class="floating-box" style="top: 40%; left: 20%; background-color: #f0f8ff;" data-box="1" onclick="openLink('https://www.youtube.com/watch?v=1xyeEIL5i_0')">
         Borges
         <img src="thumbnails/borges.png" alt="Borges Image">
     </div>
 
-    <div class="floating-box" style="top: 35%; left: 65%;" data-box="2" onclick="openLink('https://www.youtube.com/watch?v=gA_lfIddqiA')">
+    <div class="floating-box" style="top: 35%; left: 65%; background-color: #ffebcd;" data-box="2" onclick="openLink('https://www.youtube.com/watch?v=gA_lfIddqiA')">
         Lenguaje Frontera
         <img src="thumbnails/lenguajefrontera.png" alt="Lenguaje Frontera Image">
     </div>
 
-    <div class="floating-box" style="top: 60%; left: 70%;" data-box="3" onclick="openLink('https://karen-pal.github.io/condor_loop/about/')">
+    <div class="floating-box" style="top: 60%; left: 70%; background-color: #e6e6fa;" data-box="3" onclick="openLink('https://karen-pal.github.io/condor_loop/about/')">
         Cóndor Loop
         <img src="thumbnails/condorloop.png" alt="Condor Loop Image">
     </div>
 
-    <div class="floating-box" style="top: 50%; left: 30%;" data-box="4" onclick="openLink('https://link-to-genoma')">
+    <div class="floating-box" style="top: 50%; left: 30%; background-color: #fffacd;" data-box="4" onclick="openLink('https://link-to-genoma')">
         Genoma
         <img src="thumbnails/genoma.png" alt="Genoma Image">
     </div>
 
-    <div class="floating-box" style="top: 25%; left: 75%;" data-box="5" onclick="openLink('https://www.youtube.com/watch?v=LT9od_RYjDo')">
+    <div class="floating-box" style="top: 25%; left: 75%; background-color: #d3d3d3;" data-box="5" onclick="openLink('https://www.youtube.com/watch?v=LT9od_RYjDo')">
         Internet Sur
         <img src="thumbnails/internetsur.png" alt="Internet Sur Image">
     </div>
 
-    <div class="floating-box" style="top: 70%; left: 55%;" data-box="6" onclick="openLink('https://karen-pal.github.io/ser_ser_ser/')">
+    <div class="floating-box" style="top: 70%; left: 55%; background-color: #f5f5f5;" data-box="6" onclick="openLink('https://karen-pal.github.io/ser_ser_ser/')">
         Ser Ser Ser
         <img src="thumbnails/ser-ser-ser.png" alt="Ser Ser Ser Image">
     </div>
 
-    <div class="floating-box" style="top: 80%; left: 35%;" data-box="7" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box" style="top: 80%; left: 35%; background-color: #fdfd96;" data-box="7" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         Árbol
         <img src="thumbnails/arbol.png" alt="Árbol Image">
     </div>
 
-    <div class="floating-box" style="top: 28%; left: 14%" data-box="8" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box" style="top: 28%; left: 14%; background-color: #dcdcdc;" data-box="8" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
         <img src="thumbnails/arbol.png" alt="Árbol Image">
     </div>
 
-    <div class="floating-box connect" style="top: 28%; left: 53%" data-box="9" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box" style="top: 28%; left: 53%; background-color: #f0e68c;" data-box="9" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
         <img src="thumbnails/arbol.png" alt="plancondorlora Image">
     </div>
 
-    <div class="floating-box connect" style="top: 37%; left: 90%" data-box="10" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box" style="top: 37%; left: 90%; background-color: #e0ffff;" data-box="10" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
         <img src="thumbnails/arbol.png" alt="plancondorlora Image">
     </div>
 
-    <div class="floating-box connect" style="top: 28%; left: 14%" data-box="11" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
+    <div class="floating-box" style="top: 28%; left: 14%; background-color: #f5deb3;" data-box="11" onclick="openLink('https://www.youtube.com/watch?v=edd1f2PWwZk')">
         plancondorLoRA
         <img src="thumbnails/arbol.png" alt="plancondorlora Image">
     </div>
@@ -157,7 +163,6 @@
     function drawConnectingLines() {
         const svg = document.querySelector('.lines-container');
         const boxes = document.querySelectorAll('.floating-box');
-    	// const boxes = document.querySelectorAll('.connect');
 
         // Clear existing lines
         svg.innerHTML = '';
@@ -174,7 +179,7 @@
                 const y1 = rect1.top + rect1.height / 2 - containerRect.top;
                 const x2 = rect2.left + rect2.width / 2 - containerRect.left;
                 const y2 = rect2.top + rect2.height / 2 - containerRect.top;
-                
+
                 const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
                 line.setAttribute('x1', x1);
                 line.setAttribute('y1', y1);
@@ -186,20 +191,8 @@
         });
     }
 
-    // Draw lines on page load
-    window.onload = function() {
-        drawConnectingLines();
-    };
-
-    // Add hover effect to show images on hover
-    document.querySelectorAll('.floating-box').forEach(box => {
-        box.addEventListener('mouseenter', function() {
-            this.querySelector('img').style.display = 'block';
-        });
-        box.addEventListener('mouseleave', function() {
-            this.querySelector('img').style.display = 'none';
-        });
-    });
+    // Draw lines when the page loads
+    window.onload = drawConnectingLines;
 </script>
 
 </body>
